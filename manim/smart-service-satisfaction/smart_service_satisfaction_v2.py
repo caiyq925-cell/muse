@@ -187,11 +187,11 @@ class SmartServiceSatisfaction(Scene):
         self.play(FadeIn(s1, shift=DOWN * 0.2), run_time=0.5)
 
         hook1 = rich([('t', "满意度只有 ", C_TXT), ('m', fr(F_ORIG), C_COND),
-                      ('t', "，上了智能客服，", C_TXT)], 44, 50).move_to([0, 4.40, 0])
+                      ('t', "，上了智能客服，", C_TXT)], 40, 44).move_to([0, 4.50, 0])
         hook2 = rich([('t', "居然能涨到 ", C_TXT), ('m', fr(F_ANS), C_KEY),
-                      ('t', "？", C_TXT)], 44, 50).move_to([0, 3.60, 0])
+                      ('t', "？", C_TXT)], 40, 44).move_to([0, 3.55, 0])
         hook3 = rich([('t', "关键在", C_TXT), ('t', "第二个四分之一", C_KEY),
-                      ('t', "。", C_TXT)], 44, 50).move_to([0, 2.80, 0])
+                      ('t', "。", C_TXT)], 40, 44).move_to([0, 2.60, 0])
         self.play(FadeIn(hook1, shift=UP * 0.2), FadeIn(hook2, shift=UP * 0.2),
                   FadeIn(hook3, shift=UP * 0.2), run_time=1.2)
 
