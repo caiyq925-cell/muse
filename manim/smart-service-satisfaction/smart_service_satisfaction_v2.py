@@ -104,7 +104,7 @@ def make_step(txt):
         fill_color=BLACK, fill_opacity=0.35,
     )
     g = VGroup(rect, t)
-    g.move_to([-4.5 + 0.12 + w / 2, 5.45, 0])
+    g.move_to([-4.5 + 0.12 + w / 2, 5.57, 0])
     return g
 
 
@@ -187,11 +187,11 @@ class SmartServiceSatisfaction(Scene):
         self.play(FadeIn(s1, shift=DOWN * 0.2), run_time=0.5)
 
         hook1 = rich([('t', "满意度只有 ", C_TXT), ('m', fr(F_ORIG), C_COND),
-                      ('t', "，上了智能客服，", C_TXT)], 44, 50).move_to([0, 4.75, 0])
+                      ('t', "，上了智能客服，", C_TXT)], 44, 50).move_to([0, 4.40, 0])
         hook2 = rich([('t', "居然能涨到 ", C_TXT), ('m', fr(F_ANS), C_KEY),
-                      ('t', "？", C_TXT)], 44, 50).move_to([0, 3.95, 0])
+                      ('t', "？", C_TXT)], 44, 50).move_to([0, 3.60, 0])
         hook3 = rich([('t', "关键在", C_TXT), ('t', "第二个四分之一", C_KEY),
-                      ('t', "。", C_TXT)], 44, 50).move_to([0, 3.15, 0])
+                      ('t', "。", C_TXT)], 44, 50).move_to([0, 2.80, 0])
         self.play(FadeIn(hook1, shift=UP * 0.2), FadeIn(hook2, shift=UP * 0.2),
                   FadeIn(hook3, shift=UP * 0.2), run_time=1.2)
 
@@ -210,13 +210,13 @@ class SmartServiceSatisfaction(Scene):
             rich([('t', "② 智能客服单独服务：是原来的 ", C_COND), ('m', fr(R_AI), C_COND)], 32, 38),
             rich([('t', "③ 双重服务：满意度又提高了 ", C_COND), ('m', fr(R_UP), C_COND)], 32, 38),
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.42)
-        conds.move_to([-4.2 + conds.width / 2, -0.55, 0])
+        conds.move_to([-4.2 + conds.width / 2, -1.37, 0])
         sub2 = make_sub([("关键，就藏在", None), ("第二个四分之一里。", "第二个四分之一")])
         self.play(LaggedStart(*[FadeIn(c, shift=RIGHT * 0.4) for c in conds], lag_ratio=0.5),
                   FadeOut(self.sub), FadeIn(sub2), run_time=1.6)
         self.sub = sub2
         q = Text("那么，现在的满意度是多少？", font=CJK, font_size=40,
-                 color=C_TXT, weight=BOLD).move_to([0, -3.0, 0])
+                 color=C_TXT, weight=BOLD).move_to([0, -3.45, 0])
         self.play(FadeIn(q, shift=RIGHT * 0.4), run_time=0.6)
         self.wait(0.6)
 
@@ -336,12 +336,12 @@ class SmartServiceSatisfaction(Scene):
         self.play(FadeIn(labq), FadeOut(self.sub), FadeIn(sub8), run_time=0.4)
         self.sub = sub8
         punch1 = rich([('t', "单位「1」变了：这次的 ", C_KEY), ('m', fr(R_UP), C_KEY),
-                       ('t', "，", C_KEY)], 34, 40, weight=BOLD).move_to([0, 3.75, 0])
+                       ('t', "，", C_KEY)], 34, 40, weight=BOLD).move_to([0, 4.00, 0])
         punch2 = rich([('t', "是 ", C_KEY), ('m', fr(F_MID), C_KEY),
                        ('t', " 的 ", C_KEY), ('m', fr(R_UP), C_KEY),
                        ('t', "，不是原来 ", C_KEY), ('m', fr(F_ORIG), C_KEY),
                        ('t', " 的 ", C_KEY), ('m', fr(R_UP), C_KEY),
-                       ('t', "。", C_KEY)], 34, 40, weight=BOLD).move_to([0, 3.0, 0])
+                       ('t', "。", C_KEY)], 34, 40, weight=BOLD).move_to([0, 3.25, 0])
         self.play(FadeIn(punch1, shift=UP * 0.2), FadeIn(punch2, shift=UP * 0.2), run_time=0.8)
         self.wait(0.6)
 
@@ -351,7 +351,7 @@ class SmartServiceSatisfaction(Scene):
                     30, 36).move_to([(x1 + x2) / 2, -0.4, 0])
         self.play(FadeOut(labq), FadeIn(g2), FadeIn(mul2, shift=UP * 0.15), run_time=0.5)
         labC = MathTex(fr(F_ANS), font_size=52, color=C_KEY)
-        labC.move_to([x2 - labC.width / 2 - 0.1, AY + BAR_H + 0.51, 0])
+        labC.move_to([x2 - labC.width / 2 - 0.1, AY + BAR_H + 0.86, 0])
         sub9 = make_sub([("把它切成四份，其中一份，", None),
                          ("就是新长出来的这一段。", None)])
         self.play(block.animate.move_to([(x1 + x2) / 2, AY + BAR_H / 2, 0]),
