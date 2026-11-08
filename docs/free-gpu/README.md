@@ -162,9 +162,14 @@ Colab 本质是云端 Jupyter 笔记本，代码跑在 Google 的服务器上，
 - SDXL：`stabilityai/stable-diffusion-xl-base-1.0`（Hugging Face）
 - FLUX.2 Klein、Z-Image-Turbo、Wan 2.2、LTX-2：以各模型 Hugging Face 模型卡与许可证为准，版本变化快，商用前再核对一次。
 
-## 11. 待办
+## 11. 实测更新：720p 视频已生成（2026-11-09 00:39）
 
-- [ ] Kaggle：决定是否走 Persona 身份验证 / 换号，解锁 GPU 后在 Kaggle 跑一次 SDXL 对比 Colab。
+- ComfyUI 0.44.0（官方最新版，Colab 免费 T4），Wan 2.2 TI2V 5B GGUF Q4_K_S，1280×720、81 帧、16fps、5.06 秒，生成耗时 19 分 35 秒（uni_pc、20 步、cfg 5、shift 8），首帧为 SDXL 那张奶奶分橘子图，中帧核验与首帧一致，跑完已断开 GPU。
+- 注意：原定 Wan 2.2 14B 720p 在 Colab 免费版 12.67GB 系统内存下加载时被 OOM killer 杀掉，未能生成；免费 Colab 上 14B 不要再按原路线重提，720p 用 5B 是实测可行的路线。
+
+## 12. 待办
+
+- [ ] Kaggle：2026-11-08 21:09 用户已向 Kaggle 提交客服支持，等回复；验证通过后再在 Kaggle 跑一次 SDXL 对比 Colab。
 - [ ] 生图：试 FLUX.2 Klein 4B 或 Z-Image-Turbo，对比 SDXL 的水彩故事风格。
-- [ ] 生视频：在 Colab 试 Wan 2.2 5B 480p 图生视频（用已生成的 SDXL 图做首帧），下载 MP4 验收。
-- [ ] ComfyUI：实测 `comfyui_colab.ipynb`，确认隧道链接可用。
+- [x] 生视频：Wan 2.2 5B 720p 图生视频已生成并验收（见第 11 节）。
+- [x] ComfyUI：已在 Colab 实测部署成功（0.44.0，隧道链接可用）。
