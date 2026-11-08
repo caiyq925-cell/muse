@@ -21,8 +21,24 @@
 
 | 文件 | 说明 |
 |---|---|
-| `SmartServiceSatisfaction.mp4` | 成片（37.8 秒，1280×720 @30fps） |
-| `smart_service_satisfaction.py` | ManimCE 源码，开头含最终答案变量与 assert 代回验算 |
+| `SmartServiceSatisfaction.mp4` | **v2 成片（56.03 秒，1080×1920 竖屏 @30fps，无声 + 烧录字幕）** |
+| `smart_service_satisfaction_v2.py` | v2 源码（ManimCE，分数一律 MathTex，字幕与 .srt 时间一致） |
+| `SmartServiceSatisfaction_v2.srt` | v2 字幕文件（与成片烧录字幕同文案） |
+| `narration_v2.txt` | v2 逐字解说稿（配音待补：需在剪映里按此稿配音） |
+| `smart_service_satisfaction.py` | v1 源码（横屏 1280×720，37.8 秒，见 REVIEW.md） |
+| `REVIEW.md` | v1 逐帧检核报告（9 个问题） |
+| `PROMPT.md` | v2 竖屏重做提示词（ManimCE，含分镜表与逐字稿） |
+
+## v1 → v2 改了什么
+
+- 横屏 1280×720 改竖屏 1080×1920，主体放画面 15%~70% 高度区
+- 第 4 幕算式组下移、步骤标题改左上角小药丸，不再压住算式
+- 第 3 幕粉块改为从旧条末格脱离、平移到末端落位才变成新增段，全片同一时刻只有一处粉色
+- 补半步：1 + 1/4 = 4/4 + 1/4 = 5/4 单独占一行
+- 烧录字幕 + .srt + 逐字稿；配音待补
+- 点名典型错答：拿原来 3/5 的 1/4 来算会错成 87/100（灰字划掉）
+- 分数中文读法：90/100 读作"百分之九十"（见逐字稿与字幕）
+- 版式净空：行内分数按分数实际高度留空，钩子、标签与上下元素均无重叠（逐帧验收通过）
 
 ## 分镜表（6 幕）
 
@@ -40,9 +56,15 @@
 - **主线讲法**：单位"1"连乘——把两句话翻译成两次放大（×6/5、×5/4），在 0~1 标尺上让满意度条真实生长，标尺全程不动
 - **关键一跳**（第 3 幕）：「又提高 1/4」的单位"1"不是最初的 3/5，而是当下的 18/25
 
-## 本地渲染
+## 本地渲染（v2）
+
+依赖：ManimCE 0.22.1、LaTeX（`pdflatex` + `dvisvgm`；MathTex 还要 `texlive-latex-extra` 提供 `standalone.cls`）、Noto Sans CJK SC、ffmpeg。
 
 ```bash
-pip install manim
-python -m manim -qm smart_service_satisfaction.py SmartServiceSatisfaction
+pip install manim==0.22.1
+python -m manim render -qm -r 1080,1920 --format=mp4 smart_service_satisfaction_v2.py SmartServiceSatisfaction
 ```
+
+成片为 1080×1920 竖屏、30fps、约 56 秒，无声 + 烧录字幕 + 同名 .srt；配音需按 `narration_v2.txt` 在剪映里补。
+
+渲染前检查清单与历次问题修复记录见 `manim/LESSONS.md`（每次渲染前先读一遍）。
