@@ -21,13 +21,24 @@
 
 | 文件 | 说明 |
 |---|---|
-| `SmartServiceSatisfaction.mp4` | **v2 成片（56.03 秒，1080×1920 竖屏 @30fps，无声 + 烧录字幕）** |
+| `SmartServiceSatisfaction_v3.mp4` | **v3 成片（86.06 秒，1080×1920 竖屏 @30fps，AI 女声配音 + 轻背景音乐 + 烧录字幕）** |
+| `smart_service_satisfaction_v3.py` | v3 源码（ManimCE，布局与 v2 完全相同，只改时间轴；时间轴由配音实测时长驱动） |
+| `SmartServiceSatisfaction_v3.srt` | v3 字幕文件（与 v3 配音摆位一致） |
+| `narration_v3.txt` | v3 逐字解说稿（配音已烧录：Edge TTS 女声 zh-CN-XiaoxiaoNeural） |
+| `SmartServiceSatisfaction.mp4` | v2 成片（56.03 秒，1080×1920 竖屏 @30fps，无声 + 烧录字幕） |
 | `smart_service_satisfaction_v2.py` | v2 源码（ManimCE，分数一律 MathTex，字幕与 .srt 时间一致） |
 | `SmartServiceSatisfaction_v2.srt` | v2 字幕文件（与成片烧录字幕同文案） |
 | `narration_v2.txt` | v2 逐字解说稿（配音待补：需在剪映里按此稿配音） |
 | `smart_service_satisfaction.py` | v1 源码（横屏 1280×720，37.8 秒，见 REVIEW.md） |
 | `REVIEW.md` | v1 逐帧检核报告（9 个问题） |
 | `PROMPT.md` | v2 竖屏重做提示词（ManimCE，含分镜表与逐字稿） |
+
+## v2 → v3 改了什么
+
+- 加配音：免费 Edge TTS 女声 zh-CN-XiaoxiaoNeural，20 段按字幕逐段生成、按实测时长摆位，配音已烧录进成片
+- 加背景音乐：Meditation Impromptu 01 by Kevin MacLeod（incompetech.com，CC-BY 4.0），轻钢琴，音量压在配音之下，全程可闻
+- 节奏放慢：总长 56 秒 → 86 秒；每段时段 = 配音时长 + 0.5 秒停顿，画面等配音；新元素间隔拉长，关键步骤讲完停一拍再出下一个
+- 画面排版不动：布局、字号、颜色、位置与 v2 完全相同（逐帧比对确认无回归）
 
 ## v1 → v2 改了什么
 
@@ -56,15 +67,15 @@
 - **主线讲法**：单位"1"连乘——把两句话翻译成两次放大（×6/5、×5/4），在 0~1 标尺上让满意度条真实生长，标尺全程不动
 - **关键一跳**（第 3 幕）：「又提高 1/4」的单位"1"不是最初的 3/5，而是当下的 18/25
 
-## 本地渲染（v2）
+## 本地渲染（v3）
 
-依赖：ManimCE 0.22.1、LaTeX（`pdflatex` + `dvisvgm`；MathTex 还要 `texlive-latex-extra` 提供 `standalone.cls`）、Noto Sans CJK SC、ffmpeg。
+依赖：ManimCE 0.22.1、LaTeX（`pdflatex` + `dvisvgm`；MathTex 还要 `texlive-latex-extra` 提供 `standalone.cls`）、Noto Sans CJK SC、ffmpeg；配音需 `pip install edge-tts`。
 
 ```bash
-pip install manim==0.22.1
-python -m manim render -qm -r 1080,1920 --format=mp4 smart_service_satisfaction_v2.py SmartServiceSatisfaction
+pip install manim==0.22.1 edge-tts
+python -m manim render -qm -r 1080,1920 --format=mp4 smart_service_satisfaction_v3.py SmartServiceSatisfaction
 ```
 
-成片为 1080×1920 竖屏、30fps、约 56 秒，无声 + 烧录字幕 + 同名 .srt；配音需按 `narration_v2.txt` 在剪映里补。
+成片为 1080×1920 竖屏、30fps、约 86 秒。先渲无声视频，再用 ffmpeg 把 20 段配音按实测时间锚点摆位、与背景音乐（音量约 0.22，首尾淡入淡出）混成最终 mp4（AAC 音轨）。配音与音乐均已烧录，不用再去剪映补。
 
 渲染前检查清单与历次问题修复记录见 `manim/LESSONS.md`（每次渲染前先读一遍）。
